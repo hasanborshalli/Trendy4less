@@ -9,7 +9,7 @@ with fast delivery all over the country.')
 <section class="t4l-hero">
     <div class="t4l-hero-text t4l-fade-up">
         <h1>Trendy4Less</h1>
-        <p>Trendy products at smart prices. Shop online and enjoy fast delivery all over Lebanon.</p>
+        <p>Trendy products at smart prices. Shop online and enjoy fast delivery all over LEBANON.</p>
         <a href="{{ route('shop.index') }}" class="t4l-btn-primary">Shop Now</a>
     </div>
     <div class="t4l-hero-image t4l-fade-up t4l-delay-1">

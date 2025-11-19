@@ -7,24 +7,6 @@
 
 
 @section('content')
-<script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "Product",
-      "name": "{{ $product->name }}",
-      "image": [
-        "{{ asset('storage/'.$product->image_path) }}"
-      ],
-      "description": "{{ trim(preg_replace('/\s+/', ' ', strip_tags($product->description))) }}",
-      "offers": {
-        "@type": "Offer",
-        "url": "{{ route('shop.show', $product->slug) }}",
-        "priceCurrency": "USD",
-        "price": "{{ $product->effective_price }}",
-        "availability": "https://schema.org/InStock"
-      }
-    }
-</script>
 <section class="t4l-section t4l-product-page t4l-fade-up">
     @php
     $defaultColor = $product->colors->firstWhere('is_default', true)
