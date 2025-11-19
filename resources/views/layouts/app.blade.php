@@ -5,11 +5,43 @@
     <meta charset="UTF-8">
     <title>Trendy4Less</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{-- SEO --}}
+    <title>@yield('title', 'Trendy4Less | Online Shop in Lebanon')</title>
+    <meta name="description"
+        content="@yield('meta_description', 'Trendy4Less is an online shop delivering trendy products all over Lebanon at affordable prices.')">
+
+    {{-- Open Graph for social share --}}
+    <meta property="og:title" content="@yield('og_title', 'Trendy4Less | Online Shop in Lebanon')" />
+    <meta property="og:description"
+        content="@yield('og_description', 'Shop trendy products with delivery all over Lebanon.')" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="@yield('og_url', url()->current())" />
+    <meta property="og:image" content="@yield('og_image', asset('og-default.jpg'))" />
+
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
-
     {{-- Using plain CSS from public, no Vite --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+    @php
+    $orgLd = [
+    '@context' => 'https://schema.org',
+    '@type' => 'Organization',
+    'name' => 'Trendy4Less',
+    'url' => url('/'),
+    'logo' => asset('favicon.png'),
+    'sameAs' => [
+    'https://instagram.com/trendy4less',
+    ],
+    ];
+    @endphp
+
+    <script type="application/ld+json">
+        {!! json_encode($orgLd, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+    </script>
+
+
 </head>
 
 <body class="t4l-body">

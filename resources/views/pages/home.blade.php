@@ -1,4 +1,9 @@
 @extends('layouts.app')
+@section('title', 'Trendy4Less | Trendy Products with Delivery All Over Lebanon')
+@section('meta_description', 'Trendy4Less is an online shop in Lebanon offering trendy products at affordable prices,
+with fast delivery all over the country.')
+@section('og_title', 'Trendy4Less | Online Shop in Lebanon')
+@section('og_description', 'Shop trendy, affordable products with delivery all over Lebanon.')
 
 @section('content')
 <section class="t4l-hero">

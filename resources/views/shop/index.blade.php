@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title', 'Shop | Trendy4Less Lebanon Online Store')
+@section('meta_description', 'Browse all trendy products on Trendy4Less. Filter by category, search by name, and get
+delivery all over Lebanon.')
 
 @section('content')
 <section class="t4l-section t4l-fade-up">
