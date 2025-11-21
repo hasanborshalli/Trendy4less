@@ -472,7 +472,10 @@ body.t4l-body {
     flex-wrap: wrap;
     margin-top: 0.5rem;
 }
-
+.t4l-product-page-img {
+    width: 100%;
+    height: 225px;
+}
 .t4l-qty-row {
     display: flex;
     align-items: center;
@@ -798,14 +801,11 @@ body.t4l-body {
 @media (max-width: 768px) {
     .t4l-footer-grid {
         grid-template-columns: 1fr 1fr;
+        padding: 20px 20px;
     }
 }
 
 @media (max-width: 640px) {
-    .t4l-container {
-        padding: 0 1.25rem;
-    }
-
     .t4l-nav {
         flex-direction: column;
         align-items: center; /* center horizontally */
@@ -822,10 +822,7 @@ body.t4l-body {
         margin-left: 0.8rem;
         font-size: 0.87rem;
     }
-    .t4l-footer-grid {
-        padding-left: 0.2rem;
-        padding-right: 0.2rem;
-    }
+
     .t4l-product-image-wrapper {
         height: 180px; /* a bit smaller on phones */
     }
@@ -1229,4 +1226,78 @@ body.t4l-body {
 .t4l-product-price--sale {
     color: #ef4444;
     font-weight: 600;
+}
+.t4l-dialog-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 60;
+}
+
+.t4l-dialog {
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 1.5rem 1.25rem;
+    max-width: 340px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.35);
+}
+
+.t4l-dialog-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #0f172a;
+}
+
+.t4l-dialog-text {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 1rem;
+}
+
+/* Optional small tweak to make the button full width on mobile */
+.t4l-dialog .t4l-btn-primary {
+    width: 100%;
+    justify-content: center;
+}
+/* Make sure image wrapper can host absolute children */
+.t4l-product-image-wrapper {
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+
+/* Out of stock overlay over the image */
+.t4l-out-of-stock-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.t4l-out-of-stock-text {
+    color: #f9fafb;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid rgba(249, 250, 251, 0.7);
+    background: rgba(15, 23, 42, 0.85);
+}
+
+/* Footer label when product is not active */
+.t4l-product-out-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #b91c1c;
+    margin-left: auto;
 }

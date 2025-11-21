@@ -170,7 +170,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://facebook.com/trendy4less" target="_blank" class="t4l-footer-social-link">
+                        <a href="https://www.facebook.com/profile.php?id=100068628627192" target="_blank"
+                            class="t4l-footer-social-link">
                             <span class="t4l-footer-social-icon t4l-footer-social-icon--fb">
                                 {{-- Facebook logo --}}
                                 <svg viewBox="0 0 24 24" class="t4l-footer-social-svg">
@@ -183,7 +184,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.tiktok.com/@trendy4less" target="_blank" class="t4l-footer-social-link">
+                        <a href="https://www.tiktok.com/@trendy4less.shop" target="_blank"
+                            class="t4l-footer-social-link">
                             <span class="t4l-footer-social-icon t4l-footer-social-icon--tt">
                                 {{-- TikTok logo (simplified) --}}
                                 <svg viewBox="0 0 24 24" class="t4l-footer-social-svg">

@@ -43,7 +43,14 @@ delivery all over Lebanon.')
                 @if($product->is_on_sale)
                 <span class="t4l-sale-badge">Sale</span>
                 @endif
+
+                @unless($product->is_active)
+                <div class="t4l-out-of-stock-overlay">
+                    <span class="t4l-out-of-stock-text">Out of stock</span>
+                </div>
+                @endunless
             </a>
+
 
             @if($product->colors->count())
             <div class="t4l-card-color-swatches">
@@ -51,7 +58,7 @@ delivery all over Lebanon.')
                 @if($product->image_path)
                 <button type="button" class="t4l-card-color-dot t4l-card-color-dot--active" title="Main"
                     data-img="{{ asset('storage/'.$product->image_path) }}" data-color-id=""
-                    style="background:#ffffff; border:1px solid #e5e7eb;"></button>
+                    style="background:#ffffff; border:1px solid #e5e7eb;"><span>D</span></button>
                 @endif
 
                 {{-- Color dots --}}
@@ -87,12 +94,18 @@ delivery all over Lebanon.')
                         ${{ number_format($product->price, 2) }}
                     </span>
                     @endif
+
+                    @if($product->is_active)
                     <form method="POST" action="{{ route('cart.add', $product) }}">
                         @csrf
                         <input type="hidden" name="color_id" class="t4l-card-color-input" value="">
                         <button type="submit" class="t4l-btn-primary t4l-btn-small">Add to Cart</button>
                     </form>
+                    @else
+                    <span class="t4l-product-out-label">Out of stock</span>
+                    @endif
                 </div>
+
             </div>
         </div>
 
@@ -105,18 +118,54 @@ delivery all over Lebanon.')
         {{ $products->links() }}
     </div>
 </section>
-
+{{-- Color selection dialog (used when product has colors but none is selected) --}}
+@if($product->colors->count())
+<div id="t4l-color-dialog" class="t4l-dialog-overlay" style="display:none;">
+    <div class="t4l-dialog">
+        <h2 class="t4l-dialog-title">Choose a color 🎨</h2>
+        <p class="t4l-dialog-text">
+            Please pick a color for this product before adding it to your cart.
+        </p>
+        <button type="button" class="t4l-btn-primary t4l-dialog-close">
+            Got it
+        </button>
+    </div>
+</div>
+@endif
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const cards = document.querySelectorAll('.t4l-product-card');
+        const cards  = document.querySelectorAll('.t4l-product-card');
+        const dialog = document.getElementById('t4l-color-dialog');
+
+        function openColorDialog() {
+            if (dialog) dialog.style.display = 'flex';
+        }
+
+        function closeColorDialog() {
+            if (dialog) dialog.style.display = 'none';
+        }
+
+        if (dialog) {
+            dialog.querySelectorAll('.t4l-dialog-close').forEach(btn => {
+                btn.addEventListener('click', closeColorDialog);
+            });
+
+            dialog.addEventListener('click', function (e) {
+                if (e.target === dialog) {
+                    closeColorDialog();
+                }
+            });
+        }
 
         cards.forEach(card => {
             const img        = card.querySelector('.t4l-product-image-wrapper img');
             const dots       = Array.from(card.querySelectorAll('.t4l-card-color-dot'));
             const wrapper    = card.querySelector('.t4l-product-image-wrapper');
-            const colorInput = card.querySelector('.t4l-card-color-input');
+            const colorInput = card.querySelector('.t4l-card-color-input');  // null if out of stock
+            const form       = card.querySelector('form');                   // null if out of stock
 
-            if (!img || !dots.length || !wrapper || !colorInput) return;
+            // Need at least an image + wrapper for swipe / color switching
+            if (!img || !wrapper) return;
 
             const mainSrc = img.getAttribute('data-main-img') || img.src;
 
@@ -146,7 +195,8 @@ delivery all over Lebanon.')
                     }
                 });
 
-                if (activeDot) {
+                // Only update hidden input if it exists (i.e. product is active)
+                if (activeDot && colorInput) {
                     const colorId = activeDot.getAttribute('data-color-id') || '';
                     colorInput.value = colorId;
                 }
@@ -159,10 +209,10 @@ delivery all over Lebanon.')
                 updateActiveDot();
             }
 
-            // Init: start on main image and set color_id accordingly (empty = main)
+            // Init: start on main image
             setImageByIndex(0);
 
-            // Dot click → set image & color_id
+            // Dot click → set image & color_id (if colorInput exists)
             dots.forEach(dot => {
                 dot.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -188,10 +238,9 @@ delivery all over Lebanon.')
                 if (touchStartX === null) return;
 
                 const deltaX = e.changedTouches[0].clientX - touchStartX;
-                const threshold = 40; // how much swipe to detect
+                const threshold = 40;
 
                 if (Math.abs(deltaX) > threshold) {
-                    // This was a swipe, not a tap → don't open product link
                     e.preventDefault();
                     e.stopPropagation();
 
@@ -206,7 +255,22 @@ delivery all over Lebanon.')
 
                 touchStartX = null;
             });
+
+            // ✅ Only do color validation if:
+            // - there is a form (so product is active)
+            // - there are color dots
+            // - there is a hidden color input
+            if (form && dots.length && colorInput) {
+                form.addEventListener('submit', function (e) {
+                    if (!colorInput.value) {
+                        e.preventDefault();
+                        openColorDialog();
+                    }
+                });
+            }
         });
     });
 </script>
+
+
 @endsection

@@ -14,8 +14,7 @@ class ShopController extends Controller
     $categories = Category::orderBy('name')->get();
 
     // 👇 add 'colors' here
-    $query = Product::with(['category', 'colors'])
-        ->where('is_active', true);
+    $query = Product::with(['category', 'colors']);
 
     if ($request->filled('category')) {
         $query->whereHas('category', function ($q) use ($request) {
@@ -41,9 +40,6 @@ class ShopController extends Controller
 
     public function show(Product $product)
     {
-        if (! $product->is_active) {
-            abort(404);
-        }
 $product->load(['category', 'colors']);
         return view('shop.show', compact('product'));
     }
