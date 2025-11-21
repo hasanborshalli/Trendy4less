@@ -73,6 +73,8 @@ delivery all over Lebanon.')
                 <span class="t4l-card-color-more">+{{ $product->colors->count() - 4 }}</span>
                 @endif
             </div>
+            @else
+            <div class="blank-space"></div>
             @endif
 
             <div class="t4l-product-body">

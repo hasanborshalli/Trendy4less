@@ -1113,7 +1113,10 @@ body.t4l-body {
     margin-top: 0.8rem;
     flex-wrap: wrap;
 }
-
+.blank-space {
+    height: 20px;
+    margin-top: 0.8rem;
+}
 .t4l-color-dot {
     width: 26px;
     height: 26px;
