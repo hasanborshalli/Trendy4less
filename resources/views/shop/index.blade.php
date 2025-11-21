@@ -119,7 +119,6 @@ delivery all over Lebanon.')
     </div>
 </section>
 {{-- Color selection dialog (used when product has colors but none is selected) --}}
-@if($product->colors->count())
 <div id="t4l-color-dialog" class="t4l-dialog-overlay" style="display:none;">
     <div class="t4l-dialog">
         <h2 class="t4l-dialog-title">Choose a color 🎨</h2>
@@ -131,7 +130,6 @@ delivery all over Lebanon.')
         </button>
     </div>
 </div>
-@endif
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const cards  = document.querySelectorAll('.t4l-product-card');
