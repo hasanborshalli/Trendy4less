@@ -146,7 +146,8 @@
                 <h4 class="t4l-footer-title">Contact Us</h4>
                 <ul class="t4l-footer-links t4l-footer-social-list">
                     <li>
-                        <a href="tel:+96176912741" class="t4l-footer-social-link">
+                        <a href="https://wa.me/96176912741?text=Hello%20Trendy4Less%2C%20I%20have%20a%20question%20about%20a%20product."
+                            class="t4l-footer-social-link">
                             <span class="t4l-footer-social-icon">
                                 {{-- Phone icon --}}
                                 <img src="/img/call.svg" alt="">
