@@ -744,6 +744,8 @@ body.t4l-body {
     margin-top: 0.8rem;
     padding: 0.9rem 0;
     background: #e5e7eb;
+    display: flex;
+    flex-direction: column;
 }
 
 .t4l-footer-bottom-inner {
