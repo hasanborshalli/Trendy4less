@@ -1304,3 +1304,19 @@ body.t4l-body {
     color: #b91c1c;
     margin-left: auto;
 }
+.brndng-powered-by {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: "Archivo Black", system-ui, sans-serif;
+    font-size: 0.9rem;
+    color: #000;
+}
+
+.brndng-word {
+    color: #000;
+}
+
+.brndng-dot {
+    color: rgb(255, 145, 77);
+}

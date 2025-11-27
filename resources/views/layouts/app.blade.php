@@ -23,6 +23,10 @@
     <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
     {{-- Using plain CSS from public, no Vite --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+
 
     @php
     $orgLd = [
@@ -205,8 +209,16 @@
         <div class="t4l-footer-bottom">
             <div class="t4l-container t4l-footer-bottom-inner">
                 <p>© {{ date('Y') }} Trendy4Less. All rights reserved.</p>
+
+                <div class="brndng-powered-by">
+                    <span>Powered by</span>
+                    <span class="brndng-word">
+                        &nbsp;Brndng<span class="brndng-dot">.</span>
+                    </span>
+                </div>
             </div>
         </div>
+
     </footer>
     @php
     $showWhatsAppFloat = request()->routeIs([
